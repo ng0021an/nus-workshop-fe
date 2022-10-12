@@ -4,6 +4,9 @@ import { useCallback, useState } from "react";
 import { useWallet } from "../../hooks/wallet";
 import { get } from "../../utils/request";
 
+const TOKEN_ID = 2;
+const TOKEN_AMOUNT = 1;
+
 export default function Reward() {
   const [claimRequestState, setClaimRequestState] = useState("initial");
   const { connectWallet } = useWallet();
@@ -13,6 +16,7 @@ export default function Reward() {
     if (connectedAccount == null) {
       return;
     }
+
     async function claimNFT() {
       try {
         setClaimRequestState("pending");
@@ -21,8 +25,8 @@ export default function Reward() {
           path: "/gettoken",
           query: {
             to: connectedAccount,
-            id: 2,
-            quantity: 1,
+            id: TOKEN_ID,
+            quantity: TOKEN_AMOUNT,
           },
         });
         setClaimRequestState("success");

@@ -34,7 +34,7 @@ yarn
 yarn dev-a
 ```
 
-### Rrun app B
+### Run app B
 
 ```bash
 yarn dev-b

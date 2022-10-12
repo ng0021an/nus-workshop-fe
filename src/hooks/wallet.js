@@ -3,9 +3,9 @@ import { ethers } from "ethers";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const APP_NAME = "Workshop Playground";
-const APP_LOGO_URL = "https://example.com/logo.png";
-const FALLPACK_RPC_URL = "https://cloudflare-eth.com";
-const DEFAULT_CHAIN_ID = 1;
+const DEFAULT_RPC_URL =
+  "https://polygon-mumbai-infura.wallet.coinbase.com/?targetName=infura-goerli";
+const DEFAULT_CHAIN_ID = 5;
 
 // Hook for connecting to Coinbase Wallet
 export function useWallet() {
@@ -21,20 +21,20 @@ export function useWallet() {
     // Initialize Coinbase Wallet SDK
     const coinbaseWallet = new CoinbaseWalletSDK({
       appName: APP_NAME,
-      appLogoUrl: APP_LOGO_URL,
-      darkMode: false,
-      overrideIsMetaMask: false,
     });
 
     // Initialize the Web3 Provider object
     // This is equivalent to the injected provider from Coinbase Wallet
     const coinbaseWalletProvider = coinbaseWallet.makeWeb3Provider(
-      FALLPACK_RPC_URL,
+      DEFAULT_RPC_URL,
       DEFAULT_CHAIN_ID,
     );
 
     // Wrap the Web3 Provider with ether.js provider for better APIs
-    const provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
+    const provider = new ethers.providers.Web3Provider(
+      coinbaseWalletProvider,
+      DEFAULT_CHAIN_ID,
+    );
 
     return provider;
   }, []);

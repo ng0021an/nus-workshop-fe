@@ -1,12 +1,28 @@
-import { Button, Center, Container } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Container,
+  Paper,
+  Space,
+  Text,
+  Title,
+} from "@mantine/core";
 import { IconBrandCoinbase } from "@tabler/icons";
-import { useCallback, useEffect, useMemo } from "react";
+import { BigNumber, ethers } from "ethers";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
+import { erc1155Abi } from "../../constants/abi";
 import { useWallet } from "../../hooks/wallet";
 
-export default function Checkin() {
-  const { account, connectWallet } = useWallet();
+const TOKEN_ID = 2;
+const ZERO_BIG_NUMBER = BigNumber.from(0);
 
+export default function Checkin() {
+  const { account, connectWallet, ethersProvider } = useWallet();
+  const [balance, setBalance] = useState(undefined);
+
+  // Short-form displayed string for wallet address
+  // 0xa1b2...c3d4
   const accountShortForm = useMemo(() => {
     if (account == null) {
       return "";
@@ -16,11 +32,27 @@ export default function Checkin() {
     )}`;
   }, [account]);
 
+  // Flag telling if the user is eligible for the conference
+  const isEligible = useMemo(() => {
+    return balance != null && balance.gt(ZERO_BIG_NUMBER);
+  }, [balance]);
+
+  // Fetch the wallet's balance (if connected) for the specific ERC-1155 token
   useEffect(() => {
     if (account == null) {
       return;
     }
-    // TODO: Fetch currently owned NFTs for user's wallet
+    async function checkBalance() {
+      const signer = ethersProvider.getSigner(account);
+      const erc1155Contract = new ethers.Contract(
+        import.meta.env.VITE_CONTRACT_ADDRESS,
+        erc1155Abi,
+        signer,
+      );
+      const balance = await erc1155Contract.balanceOf(account, TOKEN_ID);
+      setBalance(balance);
+    }
+    checkBalance();
   }, [account]);
 
   const handleConnectButtonClick = useCallback(async () => {
@@ -54,6 +86,31 @@ export default function Checkin() {
           </Button>
         )}
       </Center>
+      <Space h="md" />
+      {balance != null && (
+        <Paper radius="md" withBorder p="lg">
+          <Title align="center" size={64}>
+            {isEligible ? "🥳" : "😞"}
+          </Title>
+          <Title align="center" order={1} mt="md">
+            {isEligible ? "Congrats!" : "Sorry..."}
+          </Title>
+          {isEligible && (
+            <Text align="center" color="dimmed" mt="sm">
+              You have the{" "}
+              <Text color="yellow" inherit component="span">
+                {`"RockSolid golden badge"`}
+              </Text>
+              ! Welcome!
+            </Text>
+          )}
+          {!isEligible && (
+            <Text align="center" color="dimmed" mt="sm">
+              {"You don't have any required NFTs for the conference."}
+            </Text>
+          )}
+        </Paper>
+      )}
     </Container>
   );
 }
