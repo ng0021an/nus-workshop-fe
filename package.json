@@ -12,8 +12,6 @@
     "dev-a": "APP_ID=a vite",
     "dev-b": "APP_ID=b vite",
     "dev": "yarn dev-a & yarn dev-b && fg",
-    "build": "vite build",
-    "preview": "vite preview",
     "postinstall": "husky install"
   },
   "dependencies": {
