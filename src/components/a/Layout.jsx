@@ -3,9 +3,11 @@ import {
   AppShell,
   Group,
   Header,
+  Image,
   Navbar,
   Text,
   ThemeIcon,
+  Title,
   UnstyledButton,
   useMantineColorScheme,
 } from "@mantine/core";
@@ -17,7 +19,7 @@ import {
   IconTrophy,
 } from "@tabler/icons";
 
-import Logo from "./Logo";
+import logoUrl from "./logo-a.png";
 
 function MainLink({ icon, color, label, active }) {
   return (
@@ -90,7 +92,10 @@ export default function Layout(props) {
       header={
         <Header height={60}>
           <Group sx={{ height: "100%" }} px={20} position="apart">
-            <Logo />
+            <Group sx={{ height: "100%" }}>
+              <Image src={logoUrl} width={45} fit="contain" radius="md" />
+              <Title order={3}>RockSolid Finance</Title>
+            </Group>
             <ActionIcon variant="default" onClick={toggleColorScheme} size={30}>
               {colorScheme === "dark" ? (
                 <IconSun size={16} />

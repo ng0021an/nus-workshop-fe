@@ -28,8 +28,13 @@ export const get = async (getOptions) => {
       `GET Request to Coinbase Cloud Node failed with status ${response.status}!`,
     );
   }
-  const data = await response.json();
-  return data;
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.indexOf("application/json") !== -1) {
+    const data = await response.json();
+    return data;
+  }
+
+  return "";
 };
 
 // Util function fot POST request
@@ -53,6 +58,11 @@ export const post = async (postOptions) => {
       `POST Request to Coinbase Cloud Node failed with status ${response.status}!`,
     );
   }
-  const data = await response.json();
-  return data;
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.indexOf("application/json") !== -1) {
+    const data = await response.json();
+    return data;
+  }
+
+  return "";
 };

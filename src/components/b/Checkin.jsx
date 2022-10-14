@@ -60,17 +60,17 @@ export default function Checkin() {
   });
 
   return (
-    <Container size="xs">
+    <Container size="xs" pb="xl">
       <Center>
         {account != null && (
           <Button
-            variant="white"
+            variant="outline"
             leftIcon={<IconBrandCoinbase />}
             mt="md"
             size="md"
             radius="xl"
           >
-            ${accountShortForm}
+            {accountShortForm}
           </Button>
         )}
         {account === null && (

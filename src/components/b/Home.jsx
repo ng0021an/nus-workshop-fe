@@ -1,5 +1,4 @@
 import {
-  Badge,
   Container,
   Group,
   Image,
@@ -9,18 +8,12 @@ import {
   createStyles,
 } from "@mantine/core";
 
+import logoUrl from "./logo-b.png";
+
 const mockdata = [
   {
     imageUrl:
-      "https://ipfs.io/ipfs/bafybeidjphmskutj2zhl342n6l63n6dr2dac6ccps72yt6lao7q2ut7hv4",
-  },
-  {
-    imageUrl:
-      "https://ipfs.io/ipfs/bafybeidjphmskutj2zhl342n6l63n6dr2dac6ccps72yt6lao7q2ut7hv4",
-  },
-  {
-    imageUrl:
-      "https://ipfs.io/ipfs/bafybeidjphmskutj2zhl342n6l63n6dr2dac6ccps72yt6lao7q2ut7hv4",
+      "https://ipfs.io/ipfs/bafkreibln5vsb7okplp246ldbbhxehxgl4suoodf4hzxhr4hog5k3csrbi",
   },
 ];
 
@@ -52,20 +45,24 @@ const useStyles = createStyles((theme) => ({
 export default function Home() {
   const { classes } = useStyles();
   const features = mockdata.map((feature, index) => (
-    <Image height={400} src={feature.imageUrl} key={index} radius="md" />
+    <Image
+      src={feature.imageUrl}
+      key={index}
+      radius="md"
+      fit="contain"
+      height={200}
+    />
   ));
 
   return (
     <Container size="md" py="xl">
       <Group position="center">
-        <Badge variant="filled" size="lg">
-          Company B
-        </Badge>
+        <Image src={logoUrl} height={60} fit="contain" radius="md" />
       </Group>
       <Title order={2} className={classes.title} align="center" mt="sm">
-        {`Welcome to the "Annual XXX Conference"`}
+        {`Welcome to the annual "FirmlyFinance Conference"`}
       </Title>
-      <Text color="dimmed" align="center" mt="md">
+      <Text color="dimmed" align="center" mt="sm">
         Connect your wallet to see if you are eligible to attend the conference.
       </Text>
       <Text
@@ -77,9 +74,9 @@ export default function Home() {
         The following NFTs are accepted as entrance ticket:
       </Text>
       <SimpleGrid
-        cols={3}
+        cols={mockdata.length}
         spacing="xl"
-        mt={50}
+        mt="xs"
         breakpoints={[{ maxWidth: "xs", cols: 1 }]}
       >
         {features}
