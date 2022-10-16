@@ -11,16 +11,16 @@ import { IconCheck } from "@tabler/icons";
 
 const STATS = [
   {
-    label: "Deposit",
-    value: "> $1,000",
+    label: "Recurring Deposit",
+    value: "> $1,000 per month",
   },
   {
-    label: "Staking",
-    value: "> 1 month",
+    label: "On-time Payment",
+    value: "> 6 month",
   },
   {
-    label: "Trade Volume",
-    value: "> $10,000",
+    label: "Total Savings",
+    value: "> $100,000",
   },
 ];
 
