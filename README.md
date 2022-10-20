@@ -28,13 +28,13 @@ yarn
 
 ## Development
 
-### Run app A
+### Run app A (aka RockSolidFinance's App)
 
 ```bash
 yarn dev-a
 ```
 
-### Run app B
+### Run app B (aka FirmlyFinance's App)
 
 ```bash
 yarn dev-b

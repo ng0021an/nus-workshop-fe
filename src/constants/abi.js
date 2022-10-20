@@ -9,10 +9,9 @@ export const erc1155Abi = [
   "event URI(string,uint256 indexed)",
   "function balanceOf(address,uint256) view returns (uint256)",
   "function balanceOfBatch(address[],uint256[]) view returns (uint256[])",
-  "function Bronze() view returns (uint256)",
-  "function Gold() view returns (uint256)",
+  "function GoldBadge() view returns (uint256)",
   "function isApprovedForAll(address,address) view returns (bool)",
-  "function Silver() view returns (uint256)",
+  "function Points() view returns (uint256)",
   "function supportsInterface(bytes4) view returns (bool)",
   "function uri(uint256) pure returns (string)",
 ];
