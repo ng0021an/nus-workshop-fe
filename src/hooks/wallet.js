@@ -3,9 +3,8 @@ import { ethers } from "ethers";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const APP_NAME = "Workshop Playground";
-const DEFAULT_RPC_URL =
-  "https://polygon-mumbai-infura.wallet.coinbase.com/?targetName=infura-goerli";
-const DEFAULT_CHAIN_ID = 5;
+const DEFAULT_RPC_URL = ""; // This is only needed as a fallback, reference https://docs.cloud.coinbase.com/wallet-sdk/docs/initializing
+const DEFAULT_CHAIN_ID = 137; // Connect to polygon
 
 // Hook for connecting to Coinbase Wallet
 export function useWallet() {
