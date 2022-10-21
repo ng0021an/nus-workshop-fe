@@ -1,5 +1,14 @@
-import { Button, Container, Loader, Paper, Text, Title } from "@mantine/core";
-import { useCallback, useState } from "react";
+import {
+  Button,
+  Center,
+  Container,
+  Loader,
+  Paper,
+  Text,
+  Title,
+} from "@mantine/core";
+import { IconBrandCoinbase } from "@tabler/icons";
+import { useCallback, useMemo, useState } from "react";
 
 import { useWallet } from "../../hooks/wallet";
 import { get } from "../../utils/request";
@@ -9,7 +18,7 @@ const TOKEN_AMOUNT = 1;
 
 export default function Reward() {
   const [claimRequestState, setClaimRequestState] = useState("initial");
-  const { connectWallet } = useWallet();
+  const { account, connectWallet } = useWallet();
 
   const handleConnectButtonClick = useCallback(async () => {
     const connectedAccount = await connectWallet();
@@ -37,6 +46,17 @@ export default function Reward() {
     }
     claimNFT();
   });
+
+  // Short-form displayed string for wallet address
+  // 0xa1b2...c3d4
+  const accountShortForm = useMemo(() => {
+    if (account == null) {
+      return "";
+    }
+    return `${account.substring(0, 6)}...${account.substring(
+      account.length - 4,
+    )}`;
+  }, [account]);
 
   return (
     <Container size="xs">
@@ -66,6 +86,19 @@ export default function Reward() {
             Connect to Coinbase Wallet
           </Button>
         )}
+        {claimRequestState !== "initial" && (
+          <Center>
+            <Button
+              variant="outline"
+              leftIcon={<IconBrandCoinbase />}
+              mt="md"
+              size="md"
+              radius="xl"
+            >
+              {accountShortForm}
+            </Button>
+          </Center>
+        )}
         {claimRequestState === "pending" && (
           <Button color="blue" fullWidth mt="xl">
             <Loader color="white" size="sm" variant="dots" />
@@ -78,12 +111,12 @@ export default function Reward() {
         )}
         {claimRequestState === "failure" && (
           <Button
-            color="red"
+            color="yellow"
             fullWidth
             mt="xl"
             onClick={handleConnectButtonClick}
           >
-            Failed to claim NFT! 😞 Retry?
+            Wallet successfully connected! But failed to reach server 😞
           </Button>
         )}
       </Paper>
