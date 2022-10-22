@@ -1,8 +1,14 @@
 import ReactDOM from "react-dom/client";
 
-import AppA from "./components/a/AppA";
-import AppB from "./components/b/AppB";
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  __APP_ID__ === "a" ? <AppA /> : <AppB />,
-);
+(async () => {
+  let App;
+  console.log(__APP_ID__);
+  if (__APP_ID__ === "a") {
+    const AppAExports = await import("./components/a/AppA");
+    App = AppAExports.default;
+  } else {
+    const AppBExports = await import("./components/b/AppB");
+    App = AppBExports.default;
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+})();

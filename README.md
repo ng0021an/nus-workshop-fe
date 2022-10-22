@@ -51,3 +51,29 @@ yarn dev
 ```bash
 yarn lint
 ```
+
+## Production
+
+### Build app A (aka RockSolidFinance's App)
+
+```bash
+yarn build-a
+```
+
+### Preview app A (aka RockSolidFinance's App)
+
+```bash
+yarn preview-a
+```
+
+### Build app B (aka FirmlyFinance's App)
+
+```bash
+yarn build-b
+```
+
+### Preview app B (aka RockSolidFinance's App)
+
+```bash
+yarn preview-b
+```

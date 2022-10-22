@@ -21,6 +21,8 @@ node_modules/
 # Build ignore
 dist
 dist-ssr
+dist-a
+dist-b
 *.local
 
 # Editor directories and files

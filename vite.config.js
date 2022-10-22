@@ -1,5 +1,6 @@
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 import react from "@vitejs/plugin-react";
+import nodePolyfills from "rollup-plugin-polyfill-node";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
@@ -13,6 +14,12 @@ export default defineConfig(({ mode }) => {
       port: APP_ID === "a" ? 4000 : 5000,
     },
     plugins: [react()],
+    build: {
+      outDir: APP_ID === "a" ? "dist-a" : "dist-b",
+      rollupOptions: {
+        plugins: [nodePolyfills()],
+      },
+    },
     optimizeDeps: {
       // Polyfill NodeJS APIs for development builds
       esbuildOptions: {
