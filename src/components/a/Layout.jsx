@@ -7,7 +7,6 @@ import {
   Navbar,
   Text,
   ThemeIcon,
-  Title,
   UnstyledButton,
   useMantineColorScheme,
 } from "@mantine/core";
@@ -19,7 +18,8 @@ import {
   IconTrophy,
 } from "@tabler/icons";
 
-import logoUrl from "./logo-a.png";
+import logoUrlDark from "./logo-rocksolidfinance-dark.png";
+import logoUrl from "./logo-rocksolidfinance.png";
 
 function MainLink({ icon, color, label, active }) {
   return (
@@ -59,14 +59,22 @@ const data = [
     color: "blue",
     label: "Home",
   },
-  { icon: <IconPremiumRights size={22} />, color: "grape", label: "Assets" },
+  {
+    icon: <IconPremiumRights size={22} />,
+    color: "grape",
+    label: "Assets",
+  },
   {
     icon: <IconTrophy size={22} />,
     color: "teal",
     label: "Rewards",
     active: true,
   },
-  { icon: <IconDiscount size={22} />, color: "violet", label: "Earn" },
+  {
+    icon: <IconDiscount size={22} />,
+    color: "violet",
+    label: "Earn",
+  },
 ];
 
 export function MainLinks() {
@@ -93,8 +101,11 @@ export default function Layout(props) {
         <Header height={60}>
           <Group sx={{ height: "100%" }} px={20} position="apart">
             <Group sx={{ height: "100%" }}>
-              <Image src={logoUrl} width={45} fit="contain" radius="md" />
-              <Title order={3}>RockSolid Finance</Title>
+              <Image
+                src={colorScheme === "dark" ? logoUrlDark : logoUrl}
+                width={190}
+                fit="contain"
+              />
             </Group>
             <ActionIcon variant="default" onClick={toggleColorScheme} size={30}>
               {colorScheme === "dark" ? (
