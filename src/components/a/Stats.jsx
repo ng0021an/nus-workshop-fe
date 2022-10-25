@@ -11,8 +11,8 @@ import { IconCheck } from "@tabler/icons";
 
 const STATS = [
   {
-    label: "Recurring Deposit",
-    value: "> $1,000 per month",
+    label: "Monthly Deposit",
+    value: "> $1,000",
   },
   {
     label: "On-time Payment",
