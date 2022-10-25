@@ -65,15 +65,15 @@ export default function Reward() {
           🎉
         </Title>
         <Title align="center" order={1} mt="md">
-          Congrats!
+          Congratulation!
         </Title>
         <Text align="center" color="dimmed" mt="xs">
-          You have successfully finished our finance checklist.
+          You are eligible for a Golden Badge.
         </Text>
         <Text align="center" color="dimmed">
           Connect your wallet to receive your{" "}
           <Text color="yellow" inherit component="span">
-            {`"RockSolid golden badge"`}
+            {`"RockSolid Golden Badge"`}
           </Text>
         </Text>
         {claimRequestState === "initial" && (
@@ -83,7 +83,7 @@ export default function Reward() {
             mt="xl"
             onClick={handleConnectButtonClick}
           >
-            Connect to Coinbase Wallet
+            Connect your Coinbase Wallet
           </Button>
         )}
         {claimRequestState !== "initial" && (
@@ -106,7 +106,7 @@ export default function Reward() {
         )}
         {claimRequestState === "success" && (
           <Button color="green" fullWidth mt="xl">
-            Your NFT is on the way! 🥳
+            Your Golden Badge is on the way! 🥳
           </Button>
         )}
         {claimRequestState === "failure" && (
