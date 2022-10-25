@@ -81,6 +81,7 @@ export default function Reward() {
             color="blue"
             fullWidth
             mt="xl"
+            size="xl"
             onClick={handleConnectButtonClick}
           >
             Connect your Coinbase Wallet
