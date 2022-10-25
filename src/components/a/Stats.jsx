@@ -16,7 +16,7 @@ const STATS = [
   },
   {
     label: "On-time Payment",
-    value: "> 6 month",
+    value: "> 6 months",
   },
   {
     label: "Total Savings",

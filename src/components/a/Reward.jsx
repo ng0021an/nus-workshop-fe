@@ -65,7 +65,7 @@ export default function Reward() {
           🎉
         </Title>
         <Title align="center" order={1} mt="md">
-          Congratulation!
+          Congratulations!
         </Title>
         <Text align="center" color="dimmed" mt="xs">
           You are eligible for a Golden Badge.
