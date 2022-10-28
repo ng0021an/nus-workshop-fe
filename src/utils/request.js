@@ -24,9 +24,11 @@ export const get = async (getOptions) => {
     },
   );
   if (!response.ok) {
-    throw new Error(
-      `GET Request to Coinbase Cloud Node failed with status ${response.status}!`,
+    const msg = await response.text();
+    console.log(
+      `GET Request failed with status ${response.status} and message ${msg}!`,
     );
+    throw new Error(msg);
   }
   const contentType = response.headers.get("content-type");
   if (contentType && contentType.indexOf("application/json") !== -1) {

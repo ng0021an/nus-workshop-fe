@@ -18,6 +18,7 @@ const TOKEN_AMOUNT = 1;
 
 export default function Reward() {
   const [claimRequestState, setClaimRequestState] = useState("initial");
+  const [errMessage, setErrMessage] = useState("error");
   const { account, connectWallet } = useWallet();
 
   const handleConnectButtonClick = useCallback(async () => {
@@ -40,7 +41,8 @@ export default function Reward() {
         });
         setClaimRequestState("success");
       } catch (err) {
-        console.log(err);
+        console.log("ERROR:" + err.message);
+        setErrMessage(err);
         setClaimRequestState("failure");
       }
     }
@@ -117,7 +119,9 @@ export default function Reward() {
             mt="xl"
             onClick={handleConnectButtonClick}
           >
-            Wallet successfully connected! But failed to reach server 😞
+            Wallet successfully connected!
+            <br />
+            But got server error: {`${errMessage}`} 😞
           </Button>
         )}
       </Paper>
