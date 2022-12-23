@@ -1,4 +1,4 @@
 [build]
-  command = "yarn build-a"
+  command = "yarn build-b"
   functions = "netlify/functions"
-  publish = "dist-a"
+  publish = "dist-b"
