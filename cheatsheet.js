@@ -4,10 +4,10 @@ import { ethers } from "ethers";
 import "./styles.css";
 
 // Initialize walletSDK and get a wallet provider
-const polygonChainId = 137;
+const chainId = 8453;  // Base
 const coinbaseWalletSDK = new CoinbaseWalletSDK({ appName: "Hello" });
-const rawProvider = coinbaseWalletSDK.makeWeb3Provider("", polygonChainId);
-const provider = new ethers.providers.Web3Provider(rawProvider, polygonChainId);
+const rawProvider = coinbaseWalletSDK.makeWeb3Provider("", chainId);
+const provider = new ethers.providers.Web3Provider(rawProvider, chainId);
 
 // Onclick handler to connect wallet
 async function connectWallet() {
